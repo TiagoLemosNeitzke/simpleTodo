@@ -12,6 +12,8 @@ class Task extends Component
     public ?string $name = null;
     public ?string $short_description = null;
 
+    public  $deadline = null;
+
     public function render()
     {
         return view('livewire.task',[
@@ -30,10 +32,12 @@ class Task extends Component
             'name' => $this->name,
             'short_description' => $this->short_description,
             'user_id' => auth()->user()->id,
+            'deadline' => $this->deadline,
         ]);
 
         $this->name = null;
         $this->short_description = null;
+        $this->deadline = null;
     }
 
     public function delete($id)

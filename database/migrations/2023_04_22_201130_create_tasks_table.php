@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\User::class,'user_id')->constrained()->cascadeOnDelete();
-            $table->string('name');
-            $table->text('short_description')->nullable();
+            $table->string('name', 50);
+            $table->string('short_description', 100)->nullable();
             $table->integer('status')->default(0);
+            $table->date('deadline')->nullable();
             $table->timestamps();
         });
     }
