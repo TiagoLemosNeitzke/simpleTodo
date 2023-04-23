@@ -17,7 +17,7 @@ class Task extends Component
     public function render()
     {
         return view('livewire.task',[
-            'tasks' => \App\Models\Task::paginate(),
+            'tasks' => \App\Models\Task::query()->where('user_id', auth()->user()->id)->orderBy('deadline', 'asc')->paginate(),
         ]);
     }
 
