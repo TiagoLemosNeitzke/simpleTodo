@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Notifications\TaskNotification;
 use Illuminate\Support\Facades\Date;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -18,6 +19,7 @@ class Task extends Component
 
     public function render()
     {
+       //auth()->user()->notify(new TaskNotification()); //this call a notification
         if($this->filter === 'today')
         {
             return view('livewire.task', [

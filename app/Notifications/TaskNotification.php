@@ -2,11 +2,12 @@
 
 namespace App\Notifications;
 
-use App\Models\Task;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Twilio\TwilioChannel;
+use NotificationChannels\Twilio\TwilioSmsMessage;
 
 class TaskNotification extends Notification
 {
@@ -15,7 +16,7 @@ class TaskNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(Task $task)
+    public function __construct()
     {
         //
     }
@@ -27,29 +28,15 @@ class TaskNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return [TwilioChannel::class];
     }
 
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toTwilio($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
-    {
-        return [
-            //
-        ];
+        return (new TwilioSmsMessage())
+            ->content("Hello {$notifiable->name}! You have task scheduled to today!");
     }
 }
