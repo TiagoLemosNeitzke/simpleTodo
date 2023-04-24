@@ -40,6 +40,17 @@
         <span class="font-normal text-xs leading-7 text-red-600">If background of the column Deadline is red. <span class="font-medium">Deadline has already expired.</span></span>
     </div>
     <div class="bg-gray-700 h-screen text-white dark:bg-gray-800  shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
+        <div class="py-2">
+            <label class="flex items-center">
+                {{__('Filters')}}:
+                <select wire:model="filter" class="ml-2 h-4 border-gray-300 dark:border-gray-700 dark:bg-gray-900 text-black dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                    <option value="all">all</option>
+                    <option value="today">today</option>
+                    <option value="expired">Expired</option>
+                </select>
+            </label>
+
+        </div>
         <table class="w-full whitespace-nowrap">
             <thead>
             <tr tabindex="0" class="focus:outline-none h-16 w-full text-sm leading-none bg-emerald-600 text-white">
