@@ -14,7 +14,7 @@ class Task extends Component
     public ?string $name = null;
     public ?string $short_description = null;
     public  $deadline = null;
-    public string $filter = 'today';
+    public string $filter = 'all';
 
     public function render()
     {
@@ -61,6 +61,7 @@ class Task extends Component
         $this->name = null;
         $this->short_description = null;
         $this->deadline = null;
+        $this->render();
     }
 
     public function delete($id)

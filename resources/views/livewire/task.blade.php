@@ -93,11 +93,11 @@
                     </td>
                     {{-- Deadline --}}
                     <td>
-                      @if($task->deadline == date_format(now(),'Y-m-d'))
+                      @if($task->deadline == date_format(now(),'Y-m-d') && $task->status != 2)
                         <div class="pl-4">
                             <p class="font-medium bg-blue-600 py-1 px-2 text-white">{{$task->deadline}}</p>
                         </div>
-                        @elseif($task->deadline < date_format(now(),'Y-m-d'))
+                        @elseif($task->deadline < date_format(now(),'Y-m-d') && $task->status != 2)
                         <div class="pl-4">
                             <p class="font-medium bg-red-600 py-1 px-2 text-white">{{$task->deadline}}</p>
                         </div>
