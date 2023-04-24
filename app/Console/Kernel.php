@@ -13,6 +13,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+        /* Verify all days on 12 pm if user have task to next day */
+        $schedule->command('app:send-notification')->dailyAt('06:00');
     }
 
     /**

@@ -19,7 +19,6 @@ class Task extends Component
 
     public function render()
     {
-       //auth()->user()->notify(new TaskNotification()); //this call a notification
         if($this->filter === 'today')
         {
             return view('livewire.task', [
