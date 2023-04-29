@@ -28,12 +28,19 @@ class TaskNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return [TwilioChannel::class];
+        return ['mail',TwilioChannel::class];
     }
 
     /**
      * Get the mail representation of the notification.
      */
+    public function toMail(object $notifiable): MailMessage
+    {
+        return (new MailMessage())
+            ->subject('Task Notification')
+            ->line("Hello {$notifiable->name}! You have task scheduled to today!")
+            ->action('View Task', url('/dashboard'));
+    }
     public function toTwilio($notifiable)
     {
         return (new TwilioSmsMessage())
