@@ -41,7 +41,10 @@ class TaskNotification extends Notification
             ->line("Hello {$notifiable->name}! You have task scheduled to today!")
             ->action('View Task', url('/dashboard'));
     }
-    public function toTwilio($notifiable)
+    /**
+     * Get the Twilio / SMS representation of the notification.
+     */
+    public function toTwilio(object $notifiable): TwilioSmsMessage
     {
         return (new TwilioSmsMessage())
             ->content("Hello {$notifiable->name}! You have task scheduled to today!");

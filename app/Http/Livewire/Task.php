@@ -50,6 +50,7 @@ class Task extends Component
         $this->validate([
             'name' => 'required',
             'short_description' => 'required',
+            'deadline' => 'required|date',
         ]);
 
         \App\Models\Task::create([

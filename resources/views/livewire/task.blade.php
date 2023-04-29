@@ -25,18 +25,17 @@
                     <x-text-input wire:model="short_description" id="short_description" class="block mt-1 w-full" type="text" name="short_description" :value="old('short_description')" required />
                     <x-input-error :messages="$errors->get('short_description')" class="mt-2" />
                 </div>
-
                 {{-- Task deadline--}}
                 <div class="my-4">
                     <x-input-label for="deadline" :value="__('Deadline')" />
-                    <x-text-input wire:model="deadline" id="deadline" class="block mt-1 w-full" type="date" name="deadline" :value="old('deadline')" required />
+                    <x-text-input wire:model="deadline" id="deadline" class="block mt-1 w-full" type="date" min="{{ date_format(now(), 'Y-m-d') }}" name="deadline" :value="old('deadline')" required />
                     <x-input-error :messages="$errors->get('deadline')" class="mt-2" />
                 </div>
             </div>
         </div>
     </div>
     <div class="flex flex-col bg-white">
-        <span class="font-normal text-xs leading-7 text-emerald-600">If background of the column Deadline is blue. <span class="font-medium">Deadline is today.</span></span>
+        <span class="font-normal text-xs leading-7 text-blue-600">If background of the column Deadline is blue. <span class="font-medium">Deadline is today.</span></span>
         <span class="font-normal text-xs leading-7 text-red-600">If background of the column Deadline is red. <span class="font-medium">Deadline has already expired.</span></span>
     </div>
     <div class="bg-gray-700 h-screen text-white dark:bg-gray-800  shadow px-4 md:px-10 pt-4 md:pt-7 pb-5 overflow-y-auto">
@@ -64,6 +63,7 @@
             </thead>
             <tbody class="w-full">
             @foreach($tasks as $task)
+                @can('view', $task)
                 <tr tabindex="0" class="focus:outline-none h-20 text-sm leading-none text-gray-800 dark:text-white  bg-white dark:bg-gray-800 dark:hover:bg-gray-900  border-b border-t border-gray-100 dark:border-gray-700">
                     {{-- Column To do --}}
                     <td>
@@ -122,6 +122,7 @@
                         </div>
                     </td>
                 </tr>
+                @endcan
             @endforeach
             </tbody>
         </table>
