@@ -11,7 +11,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Fira Code', ...defaultTheme.fontFamily.sans],
+                sans: ['Playfair Display', ...defaultTheme.fontFamily.sans],
             },
         },
     },
