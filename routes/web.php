@@ -18,6 +18,26 @@ Route::get('/', function () {
     return view('auth.register');
 });
 
+Route::get('/subscribe', \App\Http\Controllers\SubscribeController::class)
+    ->name('subscribe')
+    ->middleware([
+        \App\Http\Middleware\Authenticate::class,
+    ]);
+
+Route::get('verify-subscription', \App\Http\Controllers\VerifySubscriptionController::class)
+    ->name('verify-subscription')
+    ->middleware([
+        \App\Http\Middleware\Authenticate::class,
+    ]);
+
+Route::get('/home', function(){
+    return view('dashboard');
+})
+    ->name('home')
+    ->middleware([
+        \App\Http\Middleware\Authenticate::class,
+    ]);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

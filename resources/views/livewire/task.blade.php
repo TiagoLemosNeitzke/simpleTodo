@@ -4,6 +4,12 @@
             <div class="flex flex-row justify-between items-center w-full">
                 <p tabindex="0" class="focus:outline-none text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-white dark:text-white ">
                     Tasks
+                    @if( auth()->user()->subscribed('default'))
+                        <span class="text-xs text-green-500">Premium</span>
+                    @endif
+                    @if( auth()->user()->onTrial('default'))
+                        <span class="text-xs text-yellow-500">Trial</span>
+                    @endif
                 </p>
                 <div>
                     <button wire:click="create" type="submit"  class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 inline-flex sm:ml-3 mt-4 sm:mt-0 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none">
