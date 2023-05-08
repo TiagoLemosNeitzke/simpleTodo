@@ -38,8 +38,9 @@ class TaskNotification extends Notification
     {
         return (new MailMessage())
             ->subject('Task Notification')
-            ->line("Hello {$notifiable->name}! You have task scheduled to today!")
-            ->action('View Task', url('/dashboard'));
+            ->line("Olá {$notifiable->name}! Você possui tarefas agendadas para hoje!")
+            ->line('Consulte suas tarefas no sistema.')
+            ->action('Ver Tarefas', url('/dashboard'));
     }
     /**
      * Get the Twilio / SMS representation of the notification.
@@ -47,6 +48,6 @@ class TaskNotification extends Notification
     public function toTwilio(object $notifiable): TwilioSmsMessage
     {
         return (new TwilioSmsMessage())
-            ->content("Hello {$notifiable->name}! You have task scheduled to today!");
+            ->content("Olá {$notifiable->name}! Você possui tarefas agendadas para hoje!");
     }
 }
